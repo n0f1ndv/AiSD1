@@ -1,3 +1,5 @@
+import random
+
 # TODO: change uppercase names into lowercase because they are not consts
 def insertion_sort(G, l=1):
     for i in range(1, len(G)):
@@ -66,23 +68,13 @@ def heap_sort(lst):
         heapify(lst, i, 0)
 
 
-def partition(lst, low, high):
-    pivot = lst[high]
-    i = low - 1
+def quick_sort(lst):
+    if len(lst) <= 1:
+        return lst
+    
+    pivot = lst[0]
 
-    for j in range(low, high):
-        if lst[j] <= pivot:
-            i += 1
-            lst[i], lst[j] = lst[j], lst[i]
+    left = [x for x in lst[1:] if x < pivot]
+    right = [x for x in lst[1:] if x >= pivot]
 
-    lst[i + 1], lst[high] = lst[high], lst[i + 1]
-
-    return i + 1
-
-
-def quick_sort(lst, low, high):
-    if low < high:
-        pivot = partition(lst, low, high)
-
-        quick_sort(lst, low, pivot - 1)
-        quick_sort(lst, pivot + 1, high)
+    return quick_sort(left) + [pivot] + quick_sort(right)
