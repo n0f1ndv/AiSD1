@@ -10,7 +10,7 @@ benchmark() {
     runjava=""
     runpython=""
     runcpp=""
-    runexample="python3 example.py"
+    runexample="python3 main.py"
     runcurrent=$runexample
 
     echo "Benchmarking Algorithm $algorithm with input $input_file"

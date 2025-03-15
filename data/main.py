@@ -1,31 +1,16 @@
 import sys
-from algorithms import *
-
-def sort_using_algorithm(data, algorithm):
-    # This function takes the algorithm identifier as input
-    # However, it always uses the sorted function in Python
-
-    sorted_data = sorted(data)
-
-    if algorithm == 1:
-        sorted_data = insertion_sort(data)
-    elif algorithm == 2:
-        sorted_data = shell_sort(data)
-    elif algorithm == 3:
-        sorted_data = selection_sort(data)
-    elif algorithm == 4:
-        sorted_data = heap_sort(data)
-    elif algorithm == 5:
-        sorted_data = quick_sort(data)
-    else:
-        raise ValueError("Invalid algorithm number")
-
-    return sorted_data
+from backend import sort_using_algorithm
 
 def main():
     # Command-line arguments: python script.py --algorithm <algorithm_number>
     if len(sys.argv) != 3 or sys.argv[1] != "--algorithm":
         print("Usage: python script.py --algorithm <algorithm_number>")
+        print("1 innertion sort")
+        print("2 shell sort")
+        print("3 selection sort")
+        print("4 heap sort")
+        print("5 quick sort left pivot")
+        print("6 quick sort random pivot")
         sys.exit(1)
 
     algorithm_number = int(sys.argv[2])
@@ -41,6 +26,7 @@ def main():
     sorted_data = sort_using_algorithm(data, algorithm_number)
 
     # Print the sorted data
+    print("Data:", data[0:10])
     print("Sorted data:", sorted_data[0:10])
 
 if __name__ == "__main__":

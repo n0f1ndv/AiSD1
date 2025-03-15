@@ -70,11 +70,14 @@ def heap_sort(lst):
     return lst
 
 
-def quick_sort(lst):
+# This quick sort algorithm has two options;
+# mode=0 refers to left pivot;
+# mode=1 refers to random pivot.
+def quick_sort(lst, mode=0):
     if len(lst) <= 1:
         return lst
     
-    pivot_index = random.randint(0, len(lst) - 1)
+    pivot_index = 0 if mode == 0 else random.randint(0, len(lst) - 1)
     pivot = lst[pivot_index]
 
     left = [x for x in lst[0:pivot_index] + lst[pivot_index+1:] if x < pivot]
