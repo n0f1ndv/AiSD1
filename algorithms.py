@@ -1,3 +1,4 @@
+# TODO: change uppercase names into lowercase because they are not consts
 def insertion_sort(G, l=1):
     for i in range(1, len(G)):
         h = i
@@ -35,3 +36,25 @@ def selection_sort(G):
         G[i], G[m] = G[m], G[i]
 
     return G
+
+
+def heapify(lst, i):
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
+
+    if len(lst) > left and lst[left] > lst[i]:
+        largest = left
+
+    if len(lst) > right and lst[right] > lst[largest]:
+        largest = right
+
+    if largest != i:
+        lst[i], lst[largest] = lst[largest], lst[i]
+
+        heapify(lst, largest)
+
+
+def heap_sort(lst):
+    heapify(lst, 0)
+    
