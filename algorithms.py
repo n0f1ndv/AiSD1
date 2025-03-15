@@ -72,9 +72,10 @@ def quick_sort(lst):
     if len(lst) <= 1:
         return lst
     
-    pivot = lst[0]
+    pivot_index = random.randint(0, len(lst) - 1)
+    pivot = lst[pivot_index]
 
-    left = [x for x in lst[1:] if x < pivot]
-    right = [x for x in lst[1:] if x >= pivot]
+    left = [x for x in lst[0:pivot_index] + lst[pivot_index+1:] if x < pivot]
+    right = [x for x in lst[0:pivot_index] + lst[pivot_index+1:] if x >= pivot]
 
     return quick_sort(left) + [pivot] + quick_sort(right)
