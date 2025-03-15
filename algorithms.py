@@ -38,23 +38,29 @@ def selection_sort(G):
     return G
 
 
-def heapify(lst, i):
+def heapify(lst, n, i):
     largest = i
     left = 2 * i + 1
     right = 2 * i + 2
 
-    if len(lst) > left and lst[left] > lst[i]:
+    if n > left and lst[left] > lst[i]:
         largest = left
 
-    if len(lst) > right and lst[right] > lst[largest]:
+    if n > right and lst[right] > lst[largest]:
         largest = right
 
     if largest != i:
         lst[i], lst[largest] = lst[largest], lst[i]
 
-        heapify(lst, largest)
+        heapify(lst, n, largest)
 
 
 def heap_sort(lst):
-    heapify(lst, 0)
-    
+    n = len(lst)
+
+    for i in range(n // 2 -1, -1, -1):
+        heapify(lst, n, i)
+
+    for i in range(n - 1, 0, -1):
+        lst[i], lst[0] = lst[0], lst[i]
+        heapify(lst, i, 0)
