@@ -16,7 +16,7 @@ def shell_sort(G):
     P = [1]
     k = 0
 
-    while P[-1] < j:
+    while P[-1] < j: # it seems like j is not defined
         P.append(4**(k + 1) + (3*(2**k)) + 1)
         k += 1
     P.pop()
@@ -66,6 +66,8 @@ def heap_sort(lst):
     for i in range(n - 1, 0, -1):
         lst[i], lst[0] = lst[0], lst[i]
         heapify(lst, i, 0)
+
+    return lst
 
 
 def quick_sort(lst):
