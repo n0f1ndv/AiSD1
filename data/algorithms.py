@@ -8,6 +8,7 @@ def insertion_sort(G, l=1):
         while G[h] < G[h - l] and h - l >= 0:
             G[h], G[h - l] = G[h - l], G[h]
             h -= l
+            print("ndasudas")
 
     return G
 
