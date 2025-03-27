@@ -1,44 +1,43 @@
 import random
 
 # TODO: change uppercase names into lowercase because they are not consts
-def insertion_sort(G, l=1):
-    for i in range(1, len(G)):
+def insertion_sort(lst, l=1):
+    for i in range(1, len(lst)):
         h = i
         
-        while G[h] < G[h - l] and h - l >= 0:
-            G[h], G[h - l] = G[h - l], G[h]
+        while lst[h] < lst[h - l] and h - l >= 0:
+            lst[h], lst[h - l] = lst[h - l], lst[h]
             h -= l
-            print("ndasudas")
 
-    return G
+    return lst
 
 
-def shell_sort(G):
+def shell_sort(lst):
     P = [1]
     k = 0
-
-    while P[-1] < j: # it seems like j is not defined
+    j=len(lst)
+    while P[-1] < j:
         P.append(4**(k + 1) + (3*(2**k)) + 1)
         k += 1
     P.pop()
 
     while j > 1:
         j = P.pop()
-        G = insertion_sort(G, j)
+        lst = insertion_sort(lst, j)
 
-    return G
+    return lst
 
 
-def selection_sort(G):
-    for i in range(len(G)):
+def selection_sort(lst):
+    for i in range(len(lst)):
         m = i
-        for j in range(i+1, len(G)):
-            if G[j] < G[m]:
+        for j in range(i+1, len(lst)):
+            if lst[j] < lst[m]:
                 m = j
 
-        G[i], G[m] = G[m], G[i]
+        lst[i], lst[m] = lst[m], lst[i]
 
-    return G
+    return lst
 
 
 def heapify(lst, n, i):
