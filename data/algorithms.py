@@ -1,4 +1,4 @@
-import random
+from random import randint
 
 def insertion_sort(lst, l=1):
     for i in range(1, len(lst)):
@@ -76,7 +76,7 @@ def quick_sort(lst, mode=0):
     if len(lst) <= 1:
         return lst
     
-    pivot_index = 0 if mode == 0 else random.randint(0, len(lst) - 1)
+    pivot_index = 0 if mode == 0 else randint(0, len(lst) - 1)
     pivot = lst[pivot_index]
 
     left = [x for x in lst[0:pivot_index] + lst[pivot_index+1:] if x < pivot]
