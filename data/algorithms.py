@@ -1,6 +1,5 @@
 import random
 
-# TODO: change uppercase names into lowercase because they are not consts
 def insertion_sort(lst, l=1):
     for i in range(1, len(lst)):
         h = i
@@ -16,7 +15,7 @@ def shell_sort(lst):
     gaps = [1]
     k = 0
     j=len(lst)
-    while P[-1] < j:
+    while gaps[-1] < j:
         gaps.append(4**(k + 1) + (3*(2**k)) + 1)
         k += 1
     gaps.pop()
