@@ -13,16 +13,16 @@ def insertion_sort(lst, l=1):
 
 
 def shell_sort(lst):
-    P = [1]
+    gaps = [1]
     k = 0
     j=len(lst)
     while P[-1] < j:
-        P.append(4**(k + 1) + (3*(2**k)) + 1)
+        gaps.append(4**(k + 1) + (3*(2**k)) + 1)
         k += 1
-    P.pop()
+    gaps.pop()
 
     while j > 1:
-        j = P.pop()
+        j = gaps.pop()
         lst = insertion_sort(lst, j)
 
     return lst
