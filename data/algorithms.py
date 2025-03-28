@@ -1,19 +1,19 @@
 from random import randint
 
 def insertion_sort(lst, l=1):
-    for i in range(1, len(lst)):
+    for i in range(l, len(lst)):
         key = lst[i]
-        j = i - 1
+        j = i - l
         while j >= 0 and lst[j] > key:
-            lst[j + 1] = lst[j]
-            j -= 1
-        lst[j + 1] = key
+            lst[j + l] = lst[j]
+            j -= l
+        lst[j + l] = key
 
     return lst
 
 
 def shell_sort(lst):
-    gaps = [1]
+    gaps = [1]  
     k = 0
     n = len(lst)
     while gaps[-1] < n:
@@ -22,15 +22,7 @@ def shell_sort(lst):
     gaps.pop()
 
     for gap in reversed(gaps): 
-        for i in range(gap, n):
-            temp = lst[i]
-            j = i
-
-            while j >= gap and lst[j - gap] > temp:
-                lst[j] = lst[j - gap]
-                j -= gap
-            lst[j] = temp
-
+        insertion_sort(lst, gap)
     return lst
 
 
@@ -58,20 +50,22 @@ def heapify(lst, n, i):
         largest = right
 
     if largest != i:
-        lst[i], lst[largest] = lst[largest], lst[i]
+        lst[i], lst[largest] = lst[largest], lst[i] # swap root with largest child
 
-        heapify(lst, n, largest)
+        heapify(lst, n, largest) # restoring heap property
 
 
 def heap_sort(lst):
     n = len(lst)
 
+    # building max heap
     for i in range(n // 2 - 1, -1, -1):
         heapify(lst, n, i)
 
+    #extract elements from heap
     for i in range(n - 1, 0, -1):
-        lst[i], lst[0] = lst[0], lst[i]
-        heapify(lst, i, 0)
+        lst[i], lst[0] = lst[0], lst[i] # moving root to the end
+        heapify(lst, i, 0) # restoring heap property
 
     return lst
 
