@@ -2,11 +2,12 @@ from random import randint
 
 def insertion_sort(lst, l=1):
     for i in range(1, len(lst)):
-        h = i
-        
-        while lst[h] < lst[h - l] and h - l >= 0:
-            lst[h], lst[h - l] = lst[h - l], lst[h]
-            h -= l
+        key = lst[i]
+        j = i - 1
+        while j >= 0 and lst[j] > key:
+            lst[j + 1] = lst[j]
+            j -= 1
+        lst[j + 1] = key
 
     return lst
 
@@ -14,15 +15,21 @@ def insertion_sort(lst, l=1):
 def shell_sort(lst):
     gaps = [1]
     k = 0
-    j=len(lst)
-    while gaps[-1] < j:
-        gaps.append(4**(k + 1) + (3*(2**k)) + 1)
+    n = len(lst)
+    while gaps[-1] < n:
+        gaps.append(4**(k + 1) + (3 * (2**k)) + 1)
         k += 1
     gaps.pop()
 
-    while j > 1:
-        j = gaps.pop()
-        lst = insertion_sort(lst, j)
+    for gap in reversed(gaps): 
+        for i in range(gap, n):
+            temp = lst[i]
+            j = i
+
+            while j >= gap and lst[j - gap] > temp:
+                lst[j] = lst[j - gap]
+                j -= gap
+            lst[j] = temp
 
     return lst
 
@@ -33,8 +40,8 @@ def selection_sort(lst):
         for j in range(i+1, len(lst)):
             if lst[j] < lst[m]:
                 m = j
-
-        lst[i], lst[m] = lst[m], lst[i]
+        if m != i:
+            lst[i], lst[m] = lst[m], lst[i]
 
     return lst
 
@@ -59,7 +66,7 @@ def heapify(lst, n, i):
 def heap_sort(lst):
     n = len(lst)
 
-    for i in range(n // 2 -1, -1, -1):
+    for i in range(n // 2 - 1, -1, -1):
         heapify(lst, n, i)
 
     for i in range(n - 1, 0, -1):
