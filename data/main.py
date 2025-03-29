@@ -2,6 +2,8 @@ import sys
 from backend import sort_using_algorithm
 
 def main():
+    sys.setrecursionlimit(10**6)
+
     # Command-line arguments: python script.py --algorithm <algorithm_number>
     if len(sys.argv) != 3 or sys.argv[1] != "--algorithm":
         print("Usage: python script.py --algorithm <algorithm_number>", 
