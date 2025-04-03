@@ -69,26 +69,17 @@ def heap_sort(lst):
 
 
 # This quick sort algorithm has two options;
-# mode=0 refers to left pivot;
-# mode=1 refers to random pivot.
-def quick_sort(lst, mode=0):
-    def partition(low, high):
-        pivot_index = low if mode == 0 else randint(low, high)
-        pivot = lst[pivot_index]
-        lst[pivot_index], lst[high] = lst[high], lst[pivot_index]
-        i = low
-        for j in range(low, high):
-            if lst[j] < pivot:
-                lst[i], lst[j] = lst[j], lst[i]
-                i += 1
-        lst[i], lst[high] = lst[high], lst[i]
-        return i
+def quick_sort(lst, piv=None):
+    def set_pivot():
+        return randint(0, len(lst) - 1) if piv is None else piv
 
-    def quick_sort_recursive(low, high):
-        if low < high:
-            pi = partition(low, high)
-            quick_sort_recursive(low, pi - 1)
-            quick_sort_recursive(pi + 1, high)
+    if len(lst) <= 1:
+        return lst
+    
+    pivot_index = set_pivot()
+    pivot = lst[pivot_index]
 
-    quick_sort_recursive(0, len(lst) - 1)
-    return lst
+    left = [x for x in lst[0:pivot_index] + lst[pivot_index+1:] if x < pivot]
+    right = [x for x in lst[0:pivot_index] + lst[pivot_index+1:] if x >= pivot]
+
+    return quick_sort(left, piv) + [pivot] + quick_sort(right, piv)

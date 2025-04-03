@@ -20,7 +20,7 @@ def sort_using_algorithm(data, algorithm):
         sorted_data = quick_sort(data, 0)
     elif algorithm == 6:
         print("Sorting data using quick sort, random pivot.")
-        sorted_data = quick_sort(data, 1)
+        sorted_data = quick_sort(data)
     else:
         raise ValueError("Invalid algorithm number")
 
