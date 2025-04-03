@@ -2,27 +2,25 @@ from random import randint
 
 def insertion_sort(lst, l=1):
     for i in range(l, len(lst)):
-        key = lst[i]
-        j = i - l
-        while j >= 0 and lst[j] > key:
-            lst[j + l] = lst[j]
+        j = i
+        
+        while lst[j] < lst[j-l] and j-l >= 0:
+            lst[j], lst[j-l] = lst[j-l], lst[j]
             j -= l
-        lst[j + l] = key
-
     return lst
 
 
-def shell_sort(lst):
-    gaps = [1]  
+def shell_sort(lst): 
     k = 0
     n = len(lst)
-    while gaps[-1] < n:
-        gaps.append(4**(k + 1) + (3 * (2**k)) + 1)
+    while (4**(k + 1) + (3 * (2**k)) + 1) < n:
         k += 1
-    gaps.pop()
+    k-=1
 
-    for gap in reversed(gaps): 
-        insertion_sort(lst, gap)
+    while k>= 0: 
+        insertion_sort(lst, (4**(k + 1) + (3 * (2**k)) + 1))
+        k-=1
+    insertion_sort(lst, 1)
     return lst
 
 
