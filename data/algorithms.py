@@ -71,6 +71,9 @@ def heap_sort(lst):
 # This quick sort algorithm has two options;
 def quick_sort(lst, piv=None):
     def set_pivot():
+        if piv is not None and piv >= len(lst):
+            return len(lst) - 1
+
         return randint(0, len(lst) - 1) if piv is None else piv
 
     if len(lst) <= 1:

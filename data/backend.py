@@ -17,7 +17,7 @@ def sort_using_algorithm(data, algorithm):
         sorted_data = heap_sort(data)
     elif algorithm == 5:
         print("Sorting data using quick sort, left pivot.")
-        sorted_data = quick_sort(data, 0)
+        sorted_data = quick_sort(data, 16)
     elif algorithm == 6:
         print("Sorting data using quick sort, random pivot.")
         sorted_data = quick_sort(data)
